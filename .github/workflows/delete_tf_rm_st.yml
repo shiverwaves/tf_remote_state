@@ -17,7 +17,7 @@ jobs:
     steps: 
       - name: Query a List of Bucket Names
         run: |
-          echo "aws s3api list-buckets --output text | grep "BUCKETS" | awk '{print $3}'"
+          echo "BUCKETS=( $(aws s3api list-buckets --output json | jq -rc '.Buckets[].Name') )"
       - name: Read Bucket Names
         run: |
           echo "${BUCKETS[@]}"
