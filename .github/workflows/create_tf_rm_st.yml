@@ -19,11 +19,11 @@ jobs:
         uses: actions/checkout@v2
       - name: Create S3 Bucket
         run: |
-            echo "BUCKET_NAME="tf-rm-st-bkt-$(echo $RANDOM | md5sum | head -c 7)" >> $GITHUB_ENV
-            aws s3api create-bucket --bucket ${{ env.BUCKET_NAME }} --region ${{ AWS_DEFAULT_REGION }}
+            echo "BUCKET_NAME="tf-rm-st-bkt-"$(echo $RANDOM | md5sum | head -c 7)"" >> $GITHUB_ENV
+            aws s3api create-bucket --bucket "${{ env.BUCKET_NAME }}" --region "${{ AWS_DEFAULT_REGION }}"
       - name: Put Bucket Versioning
         run: |
-            aws s3api put-bucket-versioning --bucket ${{ env.BUCKET_NAME }} --versioning-configuration Status=Enabled
+            aws s3api put-bucket-versioning --bucket "${{ env.BUCKET_NAME }}" --versioning-configuration Status=Enabled
       - name: Put Bucket Encryption
         run: |
-            aws s3api put-bucket-encryption --bucket ${{ BUCKET_NAME }} --server-side-encryption-configuration '{"Rules": [{"ApplyServerSideEncryptionByDefault": {"SSEAlgorithm": "AES256"}}]}'
+            aws s3api put-bucket-encryption --bucket "${{ BUCKET_NAME }}" --server-side-encryption-configuration '{"Rules": [{"ApplyServerSideEncryptionByDefault": {"SSEAlgorithm": "AES256"}}]}'
