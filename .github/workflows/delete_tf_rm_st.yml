@@ -14,12 +14,10 @@ jobs:
     name: Delete S3 Buckets
     runs-on: ubuntu-latest
     
-    steps:
-      - name: Checkout the repository to the runner
-        uses: actions/checkout@v2
-
-      - name: Execute Script
+    steps: 
+      - name: Query a List of Bucket Names
         run: |
-          chmod +x /home/runner/work/tf_remote_state/tf_remote_state/tf_rm_st_delete.sh"
-          /home/runner/work/tf_remote_state/tf_remote_state/tf_rm_st_delete.sh"
-        shell: bash
+          echo "BUCKETS=( $(aws s3api list-buckets --query "Buckets[].Name" --output text) )" >> $GITHUB_ENV
+      - name: Read List of Buckets
+        run: |
+          echo "${BUCKETS[@]}"
