@@ -11,9 +11,10 @@ env:
   
 jobs:
   deploy:
+    name: deploy
     runs-on: ubuntu_latest
     
     steps:
       - name: Checkout Git Repository
-      - uses: actions/checkout@v2
+        uses: actions/checkout@v2
       
