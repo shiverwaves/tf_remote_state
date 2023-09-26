@@ -20,6 +20,6 @@ jobs:
 
       - name: Execute Script
         run: |
-          chmod +x ./tf_rm_st_delete.sh"
-          ./tf_rm_st_delete.sh"
+          chmod +x /home/runner/work/tf_remote_state/tf_remote_state/tf_rm_st_delete.sh"
+          /home/runner/work/tf_remote_state/tf_remote_state/tf_rm_st_delete.sh"
         shell: bash
