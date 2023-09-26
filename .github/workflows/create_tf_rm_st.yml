@@ -2,10 +2,4 @@ name: Create Terraform Remote State
 
 on:
   workflow_dispatch:
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout Git Repository
-      uses: actions/checkout@v2
+  
