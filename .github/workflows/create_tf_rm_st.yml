@@ -1,4 +1,4 @@
-o name: Create Terraform Remote State
+name: Create Terraform Remote State
 
 on:
   workflow_dispatch:
@@ -20,5 +20,3 @@ jobs:
           echo "${{ env.AWS_DEFAULT_REGION }}"
           echo "$(echo $RANDOM | md5sum | head -c 7)"
           echo "tf-rm-st-bkt-$(echo $RANDOM | md5sum | head -c 7)"
-      
-          
