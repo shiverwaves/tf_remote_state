@@ -17,9 +17,5 @@ jobs:
     steps: 
       - name: Query a List of Bucket Names
         run: |
-          echo "BUCKETS=( $(aws s3api list-buckets --output json | jq -c '.Buckets[].Name') )" >> $GITHUB_ENV
-        shell: bash
-      - name: Read Bucket Names
-        run: |
-          echo "${BUCKETS[@]}"
-        shell: bash
+          echo "BUCKETS=( $(aws s3api list-buckets --output json | jq -c '.Buckets[].Name') )"
+          echo "ARRAY HERE ${BUCKETS[@]}"
