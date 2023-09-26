@@ -17,7 +17,7 @@ jobs:
     steps: 
       - name: Query a List of Bucket Names
         run: |
-          echo "BUCKETS=( $(aws s3api list-buckets --output text | grep "BUCKETS" | awk "{print '$3'}") )" >> $GITHUB_ENV
+          echo "BUCKETS=( $(aws s3api list-buckets --output text | grep "BUCKETS" | awk '{print "$3"}') )" >> $GITHUB_ENV
       - name: Read Bucket Names
         run: |
           echo "${BUCKETS[@]}"
