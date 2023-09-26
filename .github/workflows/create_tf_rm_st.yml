@@ -10,7 +10,7 @@ env:
   GH_PAT_TOKEN: ${{ secrets.GH_PAT_TOKEN }}
   
 jobs:
-  build:
+  job1:
     name: Create S3 Bucket
     runs-on: ubuntu-latest
     

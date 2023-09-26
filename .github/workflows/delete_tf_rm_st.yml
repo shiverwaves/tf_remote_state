@@ -10,10 +10,15 @@ env:
   GH_PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
 
 jobs:
-  build:
-    name: Delete Terraform Remote State 
+  job1:
+    name: Delete S3 Buckets
     runs-on: ubuntu-latest
     
-    steps:
-      - name: Checkout Git Repository
-        uses: actions/checkout@v2
+    steps: 
+      - name: Query a List of Tables Names
+        run: |
+          echo "TABLES=( $(aws dynamodb list-tables --output text | grep "TABLENAMES" | awk '{print $2}') )" >> $GITHUB_ENV
+      - name: Read Table Names
+        run: |
+          echo "${TABLES[@]}"
+          
