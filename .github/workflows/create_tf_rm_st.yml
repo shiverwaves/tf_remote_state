@@ -12,7 +12,7 @@ env:
 jobs:
   deploy:
     name: deploy
-    runs-on: ubuntu_latest
+    runs-on: ubuntu-latest
     
     steps:
       - name: Checkout Git Repository
