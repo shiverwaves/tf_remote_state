@@ -20,5 +20,5 @@ jobs:
           echo "BUCKETS=( $(aws s3api list-buckets --query "Buckets[].Name" --output text) )" >> $GITHUB_ENV
       - name: Read List of Buckets
         run: |
-          echo "${BUCKETS[@]}"
-          echo "$BUCKETS"
+          echo "${BUCKETS[0]}"
+          echo "$BUCKETS[1]"
