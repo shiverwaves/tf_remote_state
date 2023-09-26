@@ -22,7 +22,7 @@ jobs:
         run: |
           for BUCKET in ${BUCKETS[@]}
           do 
-            if [[ "$BUCKET" =~ ^tf_rm_st.*$ ]]
+            if [[ "$BUCKET" =~ tf_rm_st ]]
             then
               printf "$BUCKET"
             fi
