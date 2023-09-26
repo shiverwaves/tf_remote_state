@@ -17,5 +17,5 @@ jobs:
     steps: 
       - name: Query a List of Tables Names
         run: |
-          echo "aws dynamodb list-tables --output text | grep "TABLENAMES" | awk "{print $2}"" 
+          echo "aws dynamodb list-tables --output text | grep "TABLENAMES" | awk '{print $2}'" 
 
