@@ -18,4 +18,5 @@ jobs:
       - name: Create ENV variable
         run: |
           echo "${{ env.AWS_DEFAULT_REGION }}"
+          echo "$(echo $RANDOM | md5sum | head -c 7)"
           
