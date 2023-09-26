@@ -11,7 +11,7 @@ env:
   
 jobs:
   deploy:
-    name: deploy
+    name: Create an AWS s3 bucket and dynamodb table for terraform remote state management 
     runs-on: ubuntu-latest
     
     steps:
