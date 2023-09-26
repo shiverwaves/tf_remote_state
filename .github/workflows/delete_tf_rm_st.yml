@@ -30,7 +30,7 @@ jobs:
               sleep 1
                         
               # check for versioning objects
-              if ![[ $(aws s3api list-object-versioning --bucket $BUCKET --output text) =~ None ]]
+              if ![[ $(aws s3api list-object-versions --bucket $BUCKET --output text) =~ None ]]
               then
               
                 # delete versioning objects
