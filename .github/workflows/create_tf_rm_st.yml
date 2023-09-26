@@ -15,12 +15,15 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Create ENV variable
+      - name: Create Bucket Name
         run: |
-          echo "${{ env.AWS_DEFAULT_REGION }}"
-          echo "$(echo $RANDOM | md5sum | head -c 7)"
           echo "BUCKET_NAME="tf-rm-st-bkt-$(echo $RANDOM | md5sum | head -c 7)"" >> $GITHUB_ENV
-      - name: Read ENV variable
+      - name: Create S3 Bucket
         run: |
-          echo "GH style "${{ env.BUCKET_NAME }}""
-          echo "BASH style $BUCKET_NAME"
+          aws s3api create-bucket --bucket $BUCKET_NAME --region "${{ env.AWS_DEFAULT_REGION }}"
+      - name: Put Bucket Versioning
+        run: |
+          aws s3api put-bucket-versioning --bucket $BUCKET_NAME --versioning-configuration Status=Enabled
+      - name: Put Bucket Encryption
+        run: |
+          aws s3api put-bucket-encryption --bucket $BUCKET_NAME --server-side-encryption-configuration '{"Rules": [{"ApplyServerSideEncryptionByDefault": {"SSEAlgorithm": "AES256"}}]}'
