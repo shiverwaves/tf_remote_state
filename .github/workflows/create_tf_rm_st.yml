@@ -1,4 +1,4 @@
-name: Create Terraform Remote State Management
+name: Create Terraform Remote State
 
 on:
   workflow_dispatch:
@@ -7,7 +7,7 @@ env:
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
-  GH_PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
+  GH_PAT_TOKEN: ${{ secrets.GH_PAT_TOKEN }}
   
 jobs:
   build:
