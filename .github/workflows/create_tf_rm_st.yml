@@ -19,7 +19,7 @@ jobs:
         run: |
           echo "${{ env.AWS_DEFAULT_REGION }}"
           echo "$(echo $RANDOM | md5sum | head -c 7)"
-          echo "BUCKET_NAME="$(tf-rm-st-bkt-$(echo $RANDOM | md5sum | head -c 7)""
+          echo "BUCKET_NAME="tf-rm-st-bkt-$(echo $RANDOM | md5sum | head -c 7)""
       - name: Read ENV variable
         run: |
           echo "{{ env.BUCKET_NAME }}"
