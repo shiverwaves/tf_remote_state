@@ -17,9 +17,9 @@ jobs:
     steps:
       - name: Checkout the repository to the runner
         uses: actions/checkout@v2
-      - name: Query a List of Bucket Names
-        run: |
-          echo "sudo chmod +x tf_rm_st_delete.sh"
+
       - name: Execute Script
         run: |
-          echo "./tf_rm_st_delete.sh"
+          chmod +x ./tf_rm_st_delete.sh"
+          ./tf_rm_st_delete.sh"
+        shell: bash
