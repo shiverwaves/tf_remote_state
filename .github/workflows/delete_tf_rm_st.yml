@@ -19,4 +19,4 @@ jobs:
         run: |
           echo "BUCKETS=( $(aws s3api list-buckets --output text | grep "BUCKETS" | awk '{print $3}') )"
           echo "BUCKETS2=( $(aws s3api list-buckets --output json | jq -rc '.Buckets[].Name') )"
-          echo "readarray -t TEST_ARR < <(aws s3api list-buckets --output json | jq -rc '.Buckets[].Name')
+          echo "readarray -t TEST_ARR < <(aws s3api list-buckets --output json | jq -rc '.Buckets[].Name')"
