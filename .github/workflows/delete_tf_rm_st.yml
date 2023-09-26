@@ -21,3 +21,4 @@ jobs:
       - name: Read Bucket Names
         run: |
           echo "${BUCKETS[@]}"
+    shell: bash
