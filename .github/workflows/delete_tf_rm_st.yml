@@ -19,5 +19,6 @@ jobs:
         run: |
           echo "BUCKETS=( $(aws s3api list-buckets --query "Buckets[].Name" --output text) )"
       - name: Read List of Buckets
+        run: |
           echo "${BUCKETS[@]}"
           echo "$BUCKETS"
