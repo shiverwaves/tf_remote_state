@@ -17,8 +17,9 @@ jobs:
     steps: 
       - name: Query a List of Tables Names
         run: |
-          echo "TABLES=( $(aws dynamodb list-tables --output text | grep "TABLENAMES" | awk '{print $2}') )" >> $GITHUB_ENV
+          echo "readarray -t TABLES < <(aws dynamodb list-tables --output text | grep "TABLENAMES" | awk '{print $2}')" >> $GITHUB_ENV
       - name: Read Table Names
         run: |
-          echo "${TABLES[@]}"
+          echo "ARRAY ${TABLES[@]}"
+          echo "NON ARRAY $TABLES"
           
