@@ -21,4 +21,5 @@ jobs:
       - name: Read List of Buckets
         run: |
           echo "${BUCKETS[@]}"
-          echo "{#BUCKETS[@]}"
+          echo ${BUCKETS[@]}
+          echo {#BUCKETS[@]}
