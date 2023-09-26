@@ -17,5 +17,5 @@ jobs:
     steps:
       - name: Create ENV variable
         run: |
-          echo "{{ AWS_DEFAULT_REGION }}"
+          echo "${{ AWS_DEFAULT_REGION }}"
           
