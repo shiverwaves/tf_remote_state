@@ -18,13 +18,23 @@ jobs:
       - name: Query a List of Bucket Names
         run: |
           echo "BUCKETS=( $(aws s3api list-buckets --query "Buckets[].Name" --output text) )" >> $GITHUB_ENV
-      - name: Read List of Buckets
+      - name: Empty Bucket, Remove Versioning, Remove Delete Markers, Remove Bucket
         run: |
           for BUCKET in ${BUCKETS[@]}
           do 
             if [[ $BUCKET =~ tf-rm-st-bkt ]]
             then
-              printf "$BUCKET"
+              aws s3 rm s3://$BUCKET --recursive
+              sleep 1
+              
+              aws s3api delete-objects --bucket $BUCKET --delete "`aws s3api list-object-versions --bucket $BUCKET --output=json --query='{Objects: Versions[].{Key:Key,VersionId:VersionId}}'`"
+              sleep 1
+              
+              aws s3api delete-objects --bucket $BUCKET --delete "`aws s3api list-object-versions --bucket $BUCKET --output=json --query='{Objects: DeleteMarkers[].{Key:Key,VersionId:VersionId}}'`"
+              sleep 1
+              
+              aws s3 rb s3://$BUCKET 
+              sleep 1
             fi
           done
               
