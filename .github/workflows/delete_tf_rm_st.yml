@@ -15,7 +15,9 @@ jobs:
     runs-on: ubuntu-latest
     
     steps: 
-      - name: Query a List of Tables Names
+      - name: Query a List of Bucket Names
         run: |
-          echo "aws dynamodb list-tables --output text | grep "TABLENAMES" | awk '{print $2}'" 
-
+          echo "BUCKETS=( $(aws s3api list-buckets --output text | grep "BUCKETS" | awk '{print $3}') )" >> $GITHUB_ENV
+      - name: Read Bucket Names
+        run: |
+          echo "${BUCKETS[@]}"
