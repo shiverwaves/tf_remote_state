@@ -24,17 +24,29 @@ jobs:
           do 
             if [[ $BUCKET =~ tf-rm-st-bkt ]]
             then
+                      
+              # empty bucket
               aws s3 rm s3://$BUCKET --recursive
               sleep 1
+                        
+              # check for versioning objects
+              if ![[ $(aws s3api list-object-versioning --bucket $BUCKET --output text) =~ None ]]
+              then
               
-              aws s3api delete-objects --bucket $BUCKET --delete "$(aws s3api list-object-versions --bucket $BUCKET --output=json --query='{Objects: Versions[].{Key:Key,VersionId:VersionId}}')"
-              sleep 1
-              
-              aws s3api delete-objects --bucket $BUCKET --delete "$(aws s3api list-object-versions --bucket $BUCKET --output=json --query='{Objects: DeleteMarkers[].{Key:Key,VersionId:VersionId}}')"
-              sleep 1
-              
+                # delete versioning objects
+                aws s3api delete-objects --bucket $BUCKET --delete "$(aws s3api list-object-versions --bucket $BUCKET --output=json --query='{Objects: Versions[].{Key:Key,VersionId:VersionId}}')"
+                sleep 1
+                  
+                # remove delete markers
+                aws s3api delete-objects --bucket $BUCKET --delete "$(aws s3api list-object-versions --bucket $BUCKET --output=json --query='{Objects: DeleteMarkers[].{Key:Key,VersionId:VersionId}}')"
+                sleep 1
+                         
+              fi
+                        
+              # remove bucket
               aws s3 rb s3://$BUCKET 
               sleep 1
+                        
             fi
           done
               
