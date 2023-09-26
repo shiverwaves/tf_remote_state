@@ -21,4 +21,4 @@ jobs:
       - name: Read List of Buckets
         run: |
           echo "${BUCKETS[@]}"
-          for BUCKET in ${BUCKETS[@]}; do printf "$BUCKET\n"; done
+          for BUCKET in ${BUCKETS[@]}; do printf $("$BUCKET" | grep tf); done
