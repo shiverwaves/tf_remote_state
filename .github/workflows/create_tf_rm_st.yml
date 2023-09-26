@@ -40,7 +40,7 @@ jobs:
     steps:
       - name: Generate Table Name
         run: |
-          echo "TABLE_NAME= $(echo "${{ needs.job1.outputs.bucket }}" | sed 's/bkt/tbl/g')" >> $GITHUB_ENV
+          echo "TABLE_NAME=$(aws s3api list-buckets --query "Buckets[].Name" --output text | grep -o "tf-rm-st-bkt-[a-zA-Z0-9]*" | head -n1 | sed 's/bkt/tbl/g')" >> $GITHUB_ENV
       - name: Create Table
         run: |
-          echo "${{ needs.job1.outputs.bucket }}"
+          echo "$TABLE_NAME"
