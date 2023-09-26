@@ -1,4 +1,4 @@
-.name: Create Terraform Remote State
+name: Create Terraform Remote State
 
 on:
   workflow_dispatch:
