@@ -18,4 +18,4 @@ jobs:
       - name: Query a List of Bucket Names
         run: |
           echo "BUCKETS=( $(aws s3api list-buckets --output json | jq -c '.Buckets[].Name') )"
-          echo "ARRAY HERE ${BUCKETS[@]}"
+          echo "BUCKETS2=( $(aws s3api list-buckets --output json | jq -rc '.Buckets[].Name') )"
