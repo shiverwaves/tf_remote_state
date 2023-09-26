@@ -27,10 +27,10 @@ jobs:
               aws s3 rm s3://$BUCKET --recursive
               sleep 1
               
-              aws s3api delete-objects --bucket $BUCKET --delete "`aws s3api list-object-versions --bucket $BUCKET --output=json --query='{Objects: Versions[].{Key:Key,VersionId:VersionId}}'`"
+              aws s3api delete-objects --bucket $BUCKET --delete "$(aws s3api list-object-versions --bucket $BUCKET --output=json --query='{Objects: Versions[].{Key:Key,VersionId:VersionId}}')"
               sleep 1
               
-              aws s3api delete-objects --bucket $BUCKET --delete "`aws s3api list-object-versions --bucket $BUCKET --output=json --query='{Objects: DeleteMarkers[].{Key:Key,VersionId:VersionId}}'`"
+              aws s3api delete-objects --bucket $BUCKET --delete "$(aws s3api list-object-versions --bucket $BUCKET --output=json --query='{Objects: DeleteMarkers[].{Key:Key,VersionId:VersionId}}')"
               sleep 1
               
               aws s3 rb s3://$BUCKET 
