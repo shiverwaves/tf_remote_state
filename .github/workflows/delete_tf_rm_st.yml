@@ -21,4 +21,4 @@ jobs:
       - name: Read List of Buckets
         run: |
           echo "${BUCKETS[@]}"
-          echo "for BUCKET in ${BUCKETS[@]}; do echo "$BUCKET"; done"
+          for BUCKET in ${BUCKETS[@]}; do printf $BUCKET; done
