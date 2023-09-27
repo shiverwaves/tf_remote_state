@@ -49,4 +49,20 @@ jobs:
                         
             fi
           done
-              
+  job2:
+    name: Delete Dynamodb Tables
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Query a List of Table Names
+        run: |
+          echo "TABLES=( $(aws dynamodb list-tables --query "TableNames[]" --output text) )" >> $GITHUB_ENV
+      - name: Remove Tables
+        run: |
+          for TABLE in ${TABLESS[@]}
+          do 
+            if [[ $TABLE =~ tf-rm-st-tbl ]]
+            then
+              aws dynamodb delete-table --table-name $TABLE
+            fi
+          done
