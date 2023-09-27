@@ -23,7 +23,7 @@ jobs:
           echo "BUCKET_NAME="tf-rm-st-bkt-$(echo $RANDOM | md5sum | head -c 7)"" >> $GITHUB_OUTPUT
       - name: Create Bucket
         run: |
-          aws s3api create-bucket --bucket "${{ steps.bucket.outputs.BUCKET_NAM E}}" --region "${{ env.AWS_DEFAULT_REGION }}"
+          aws s3api create-bucket --bucket "${{ steps.bucket.outputs.BUCKET_NAME}}" --region "${{ env.AWS_DEFAULT_REGION }}"
       - name: Put Bucket Versioning
         run: |
           aws s3api put-bucket-versioning --bucket "${{ steps.bucket.outputs.BUCKET_NAME }}" --versioning-configuration Status=Enabled
