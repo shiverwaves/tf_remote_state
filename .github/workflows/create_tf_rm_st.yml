@@ -56,7 +56,9 @@ jobs:
     
     steps:
       - name: Checkout Git Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_PAT_TOKEN }}
         
       - name: Modify Git Repository Files
         env:
@@ -69,6 +71,8 @@ jobs:
           sed -i "s/\"tf-rm-st-tbl.*\"/\"${{ needs.job2.outputs.TABLE_NAME }}\"/g" main.tf
       - name: Push Git Repository Changes
         run: |
+          git config --global user.name automation
+          git config --global user.email "automation@github_actions.com"
           git add main.tf
           git commit -m "updating terraform remote_state"
           git push
