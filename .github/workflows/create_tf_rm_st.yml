@@ -76,13 +76,6 @@ jobs:
           git add main.tf
           git commit -m "updating terraform remote_state"
           git push
-          
-  job4:
-    name: Initialize Terraform Remote State
-    runs-on: ubuntu-latest
-    needs: [job1, job2, job3]
-      
-    steps:
-      - name: Terraform Init
+      - name: Initialize Terraform Remote State
         run: |
           terraform init
