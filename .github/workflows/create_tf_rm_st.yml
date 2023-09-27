@@ -41,7 +41,7 @@ jobs:
     steps:
       - name: Generate Table Name
         env:
-          BUCKET_NAME: ${{ needs.bucket.outputs.BUCKET_NAME }}
+          BUCKET_NAME: ${{ needs.job1.outputs.BUCKET_NAME }}
         id: table
         run: |
           echo "TABLE_NAME=$(echo $BUCKET_NAME | sed 's/bkt/tbl/g')" >> $GITHUB_OUTPUT
