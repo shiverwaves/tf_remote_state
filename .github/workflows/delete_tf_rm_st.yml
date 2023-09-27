@@ -58,7 +58,7 @@ jobs:
           echo "TABLES=( $(aws dynamodb list-tables --query "TableNames[]" --output text) )" >> $GITHUB_ENV
       - name: Remove Tables
         run: |
-          for TABLE in ${TABLESS[@]}
+          for TABLE in ${TABLES[@]}
           do 
               aws dynamodb delete-table --table-name $TABLE
               printf "remove_table: $TABLE"
