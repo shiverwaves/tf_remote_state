@@ -63,6 +63,5 @@ jobs:
             if [[ $TABLE =~ tf-rm-st-tbl ]]
             then
               aws dynamodb delete-table --table-name $TABLE
-              printf "remove_table: $TABLE"
             fi
           done
